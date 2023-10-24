@@ -17,19 +17,19 @@
     <div class="d-flex">
       <div class="list-group menu-esquerda">
         <router-link class="list-group-item list-group-item-action" to="/home"
-          ><i class="bi bi-speedometer2"></i> Dashboard</router-link
+          exact-active-class="active"><i class="bi bi-speedometer2"></i> Dashboard</router-link
         >
         <router-link class="list-group-item list-group-item-action" to="/home/vendas"
-          ><i class="bi bi-cart"></i> Vendas</router-link
+        exact-active-class="active"><i class="bi bi-cart"></i> Vendas</router-link
         >
         <router-link class="list-group-item list-group-item-action" to="/home/vendas/leads"
-          ><i class="bi bi-caret-right"></i> Leads</router-link
+        exact-active-class="active"><i class="bi bi-caret-right"></i> Leads</router-link
         >
         <router-link class="list-group-item list-group-item-action" to="/home/vendas/contratos"
-          ><i class="bi bi-caret-right"></i> Contratos</router-link
+        exact-active-class="active"><i class="bi bi-caret-right"></i> Contratos</router-link
         >
         <router-link class="list-group-item list-group-item-action" to="/home/servicos"
-          ><i class="bi bi-card-checklist"></i> Serviços</router-link
+        exact-active-class="active"><i class="bi bi-card-checklist"></i> Serviços</router-link
         >
       </div>
 
@@ -64,4 +64,19 @@
   border-top: none;
   border-right: none;
 }
+/*
+.router-link-active {
+    color: #fff;
+    background-color: #65a1fa;
+    border-color: #65a1fa;
+}
+*/
+/*
+.router-link-exact-active {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+} */
+
+
 </style>
