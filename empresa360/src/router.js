@@ -10,6 +10,7 @@ import Lead from "./components/vendas/Lead.vue";
 import Contratos from "./components/vendas/Contratos.vue";
 import Servicos from "./components/servicos/Servicos.vue";
 import Dashboard from "./components/dashboard/Dashboard.vue"
+import VendasPadrao from "./components/vendas/VendasPadrao.vue"
 
 const routes = [
   {
@@ -26,11 +27,13 @@ const routes = [
         children: [
           { path: "leads", component: Leads }, //localhost:8080/home/vendas/leads
           { path: "leads/:id", component: Lead }, //localhost:8080/home/vendas/leads/id
-          { path: "contratos", component: Contratos }, //localhost:8080/home/vendas/contratos
+          { path: "contratos", component: Contratos,name: 'contratos' }, //localhost:8080/home/vendas/contratos
+          { path: "", component: VendasPadrao }, //localhost:8080/home/vendas/
         ],
       }, //localhost:8080/home/vendas
-      { path: "Servicos", component: Servicos },
+      { path: "Servicos", component: Servicos, name:'servicos' },
       { path: "Dashboard", component: Dashboard },
+     
     ],
   },
   {
