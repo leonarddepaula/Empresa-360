@@ -5,10 +5,10 @@
     <table class="table table-hover">
       <thead>
         <tr>
-           <th scope="col">ID</th>
-           <th scope="col">NOME</th>
-           <th scope="col">TELEFONE</th>
-           <th scope="col"></th>
+          <th scope="col">ID</th>
+          <th scope="col">NOME</th>
+          <th scope="col">TELEFONE</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -24,30 +24,21 @@
         </tr>
       </tbody>
     </table>
-    
-   
+
+
   </div>
 </template>
 
 <script>
+import ApiMixin from '@/mixins/ApiMixin'
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Leads',
-  data: () => ({
-    dados: null
-  }),
-  methods: {
-    getDadosApi() {
-      fetch('http://localhost:3000/leads')
-        .then(response => response.json())
-        .then(response => {
-          this.dados = response
-        })
-    }
-  },
+  mixins: [ApiMixin],
 
   created() {
-    this.getDadosApi()
+    this.getDadosApi('http://localhost:3000/leads')
   }
 
 }

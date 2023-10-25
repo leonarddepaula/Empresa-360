@@ -32,26 +32,13 @@
 </template>
 
 <script>
+import ApiMixin from '@/mixins/ApiMixin'
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Lead',
-    data: () => ({
-        dados: {}
-
-    }),
-    methods: {
-        getDadosApi() {
-            fetch(`http://localhost:3000/leads/${this.$route.params.id}`)
-                .then(response => response.json())
-                .then(response => {
-                    this.dados = response
-                    console.log(this.dados);
-                })
-
-        },
-    },
+    mixins: [ApiMixin],
     created() {
-        this.getDadosApi()
+        this.getDadosApi(`http://localhost:3000/leads/${this.$route.params.id}`)
     }
 }
 </script>
