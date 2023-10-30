@@ -16,6 +16,12 @@ export default {
     mixins: [ApiMixin],
     created() {
         this.getDadosApi(`http://localhost:3000/servicos/${this.$route.params.id}`)
+    },
+    watch: {
+        $route(to){ // to para novo valor , from para valor antigo
+            // console.log(to.params);
+            this.getDadosApi(`http://localhost:3000/servicos/${to.params.id}`)
+        }
     }
 }
 </script>
