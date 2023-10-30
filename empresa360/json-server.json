@@ -1,13 +1,28 @@
 {
-	"leads": [
-		{ "id": 1, "nome": "Bruce Wayne", "telefone": "11 98888-7777" },
-		{ "id": 2, "nome": "Tony Stark", "telefone": "11 97777-6666" },
-		{ "id": 3, "nome": "Irmão do Jorel ", "telefone": "11 95555-5555" },
-		{ "id": 4, "nome": "Pinguim Oswaldo", "telefone": "11 98888-4444" }
-	],
-	"servicos": [
-		{ "id": 1, "servico": "Seguro de vida", "icone": "seguro_vida.png" },
-		{ "id": 2, "servico": "Seguro residencial", "icone": "seguro_residencial.png" },
-		{ "id": 3, "servico": "Seguro auto", "icone": "seguro_auto.png" }
-	]
+  "leads": [
+    { "id": 1, "nome": "Bruce Wayne", "telefone": "11 98888-7777" },
+    { "id": 2, "nome": "Tony Stark", "telefone": "11 97777-6666" },
+    { "id": 3, "nome": "Irmão do Jorel ", "telefone": "11 95555-5555" },
+    { "id": 4, "nome": "Pinguim Oswaldo", "telefone": "11 98888-4444" }
+  ],
+  "servicos": [
+    {
+      "id": 1,
+      "servico": "Seguro de vida",
+      "icone": "seguro_vida.png",
+      "descricao": "Bem-vindo ao 'Proteção Vida Plena', o seu porto seguro para o futuro! Nós entendemos o quão importante é proteger sua família e entes queridos, e é por isso que oferecemos o serviço de seguro de vida mais abrangente e confiável do mercado.Imagine um futuro onde você não precisa se preocupar com o bem-estar financeiro de sua família em caso de um evento inesperado. Com o 'Proteção Vida Plena', você pode viver com tranquilidade, sabendo que sua família estará segura, independentemente do que o destino reserva."
+    },
+    {
+      "id": 2,
+      "servico": "Seguro residencial",
+      "icone": "seguro_residencial.png",
+      "descricao": "Bem-vindo ao 'Casa Segura Total', a sua proteção definitiva para o lar! Sua casa é mais do que apenas paredes e telhados; é onde você cria memórias preciosas e se sente seguro. Proteja o seu refúgio com nosso abrangente seguro residencial e desfrute de total tranquilidade."
+    },
+    {
+      "id": 3,
+      "servico": "Seguro auto",
+      "icone": "seguro_auto.png",
+      "descricao": "Bem-vindo ao 'Seguro Auto Defesa', a sua proteção confiável sobre rodas! Seu veículo não é apenas um meio de transporte; é a sua liberdade e independência. Proteja-se de imprevistos nas estradas com o nosso abrangente seguro automotivo e continue dirigindo com confiança."
+    }
+  ]
 }
