@@ -19,8 +19,8 @@ export default {
     },
     watch: {
         $route(to){ // to para novo valor , from para valor antigo
-            // console.log(to.params);
-            this.getDadosApi(`http://localhost:3000/servicos/${to.params.id}`)
+            
+            if(to.params.id != undefined) this.getDadosApi(`http://localhost:3000/servicos/${to.params.id}`)
         }
     }
 }

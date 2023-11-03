@@ -10,8 +10,11 @@ import Lead from "./components/vendas/Lead.vue";
 import Contratos from "./components/vendas/Contratos.vue";
 import Servicos from "./components/servicos/Servicos.vue";
 import Servico from "./components/servicos/Servico.vue";
+import Opcoes from "./components/servicos/Opcoes.vue";
+import Indicadores from "./components/servicos/Indicadores.vue";
 import Dashboard from "./components/dashboard/Dashboard.vue";
 import VendasPadrao from "./components/vendas/VendasPadrao.vue";
+import DashboardRodape from "./components/dashboard/DashboardRodape.vue";
 
 const routes = [
   {
@@ -37,10 +40,18 @@ const routes = [
         component: Servicos,
         name: "servicos",
         children: [
-          { path: ":id", component: Servico, name: 'servico'} //localhost:8080/home/servicos/5
+          {
+            path: ":id",
+            name: "servico",
+            components: {
+              default: Servico,
+              opcoes: Opcoes,
+              indicadores: Indicadores,
+            },
+          }, //localhost:8080/home/servicos/5
         ],
       },
-      { path: "Dashboard", component: Dashboard },
+      { path: "Dashboard", components:{ default: Dashboard, rodape: DashboardRodape} },
     ],
   },
   {
