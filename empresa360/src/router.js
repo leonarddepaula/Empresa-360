@@ -33,7 +33,7 @@ const routes = [
           { path: "leads", component: Leads, name: "leads" }, //localhost:8080/home/vendas/leads
           { path: "leads/:id", component: Lead, name: "lead", alias: [ '/l/:id', '/pessoa/:id', '/:id'] }, //localhost:8080/home/vendas/leads/id
           { path: "contratos", component: Contratos, name: "contratos" }, //localhost:8080/home/vendas/contratos
-          { path: "", component: VendasPadrao }, //localhost:8080/home/vendas/
+          { path: "", component: VendasPadrao, name: 'vendas' }, //localhost:8080/home/vendas/
         ],
       }, //localhost:8080/home/vendas
       {
@@ -63,6 +63,17 @@ const routes = [
     path: "/login",
     component: Login,
   },
+  { path: '/redirecionamento-1', redirect:'/home/servicos' },
+  { path: '/redirecionamento-2', redirect:{ name: 'leads'} },
+  { path: '/redirecionamento-3', redirect: '/home/vendas' },
+  { path: '/redirecionamento-4', redirect: { name: 'vendas' } },
+  { path: '/redirecionamento-5', redirect: to =>{
+    //podemos programar algo antes do rerirecionamento ser efetivado 
+    console.log(to);
+
+    //return '/home/vendas'
+    return { name: 'vendas' }
+  } },
 ];
 const router = createRouter({
   history: createWebHistory(),
