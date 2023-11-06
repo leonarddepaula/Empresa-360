@@ -15,6 +15,7 @@ import Indicadores from "./components/servicos/Indicadores.vue";
 import Dashboard from "./components/dashboard/Dashboard.vue";
 import VendasPadrao from "./components/vendas/VendasPadrao.vue";
 import DashboardRodape from "./components/dashboard/DashboardRodape.vue";
+import PaginaNaoEncontrada from "./views/PaginaNaoEncontrada.vue"
 
 const routes = [
   {
@@ -74,6 +75,9 @@ const routes = [
     //return '/home/vendas'
     return { name: 'vendas' }
   } },
+
+  // { path: '/:catchAll(.*)*', redirect: '/' } //vue2 = *
+  { path: '/:catchAll(.*)*', component: PaginaNaoEncontrada } 
 ];
 const router = createRouter({
   history: createWebHistory(),
