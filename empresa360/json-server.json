@@ -24,5 +24,12 @@
       "icone": "seguro_auto.png",
       "descricao": "Bem-vindo ao 'Seguro Auto Defesa', a sua proteção confiável sobre rodas! Seu veículo não é apenas um meio de transporte; é a sua liberdade e independência. Proteja-se de imprevistos nas estradas com o nosso abrangente seguro automotivo e continue dirigindo com confiança."
     }
-  ]
+  ],
+  "contratos": [
+		{ "id": 1, "leadId": 1, "servicoId": 1, "data_inicio": "2022-01-01 00:00:00 ", "data_fim": "2022-12-31 23:59:59"},
+		{ "id": 2, "leadId": 1, "servicoId": 2, "data_inicio": "2021-01-01 00:00:00 ", "data_fim": "2021-12-31 23:59:59"},
+		{ "id": 3, "leadId": 2, "servicoId": 2, "data_inicio": "2020-01-01 00:00:00 ", "data_fim": "2020-12-31 23:59:59"},
+		{ "id": 4, "leadId": 2, "servicoId": 3, "data_inicio": "2022-01-01 00:00:00 ", "data_fim": "2022-12-31 23:59:59"},
+		{ "id": 5, "leadId": 3, "servicoId": 3, "data_inicio": "2021-01-01 00:00:00 ", "data_fim": "2021-12-31 23:59:59"}
+	]
 }
