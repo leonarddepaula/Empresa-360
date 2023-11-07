@@ -18,7 +18,6 @@
           <td>{{ d.id }}</td>
           <td>{{ d.lead.nome }}</td>
           <td>{{ d.servico.servico }}</td>
-          <td>{{ d.servicoId }}</td>
           <td>{{ d.data_inicio }}</td>
           <td>{{ d.data_fim }}</td>
         </tr>
