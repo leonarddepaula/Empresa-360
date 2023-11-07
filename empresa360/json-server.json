@@ -12,7 +12,7 @@
       "icone": "seguro_vida.png",
       "descricao": "Bem-vindo ao 'Proteção Vida Plena', o seu porto seguro para o futuro! Nós entendemos o quão importante é proteger sua família e entes queridos, e é por isso que oferecemos o serviço de seguro de vida mais abrangente e confiável do mercado.Imagine um futuro onde você não precisa se preocupar com o bem-estar financeiro de sua família em caso de um evento inesperado. Com o 'Proteção Vida Plena', você pode viver com tranquilidade, sabendo que sua família estará segura, independentemente do que o destino reserva."
     },
-    {
+    { 
       "id": 2,
       "servico": "Seguro residencial",
       "icone": "seguro_residencial.png",
