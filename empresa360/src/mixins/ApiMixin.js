@@ -8,7 +8,7 @@ export default {
                 .then(response => response.json())
                 .then(response => {
                     this.dados = response
-                    console.log(this.dados);
+                    // console.log(this.dados);
                 })
 
         },
