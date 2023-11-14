@@ -2,15 +2,27 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <h5>Contratos</h5>
-
-
-    <router-link class="btn btn-primary" :to="{ name: 'contratos', query: { leadId_like: 1 } }">LeadId = 1</router-link>
-    <router-link class="btn btn-primary" to="/home/vendas/contratos?servicoId_like=2">ServicoId = 2</router-link>
-
-    
-    <router-link class="btn btn-success" :to="{ name: 'contratos', query: { leadId_like: 1, servicoId_like: 2 } }">LeadId = 1 e serviçoId =2</router-link>
-    <router-link class="btn btn-success" to="/home/vendas/contratos?servicoId_like=2&leadId_like=2">ServicoId = 2 e leadId = 2</router-link>
+    <div class="card mb-4">
+      <div class="card-header">Contratos</div>
+      <div class="card-body">
+          <div class="row">
+              <div class="col-6">
+                  <label class="form-label">ID Contrato:</label>
+                  <input type="text" class="form-control">
+              </div>
+              <div class="col-6">
+                  <label class="form-label">Data início:</label>
+                  <div class="input-group">
+                      <input type="date" class="form-control">
+                      <input type="date" class="form-control">
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="card-footer">
+          <button type="button" class="btn btn-primary">Pesquisar</button>
+      </div>
+  </div>
 
 
     <table class="table table-hover">
@@ -49,21 +61,20 @@ export default {
     parametrosDeRelacionamento: '_expand=lead&_expand=servico'
   }),
   created() {
-    this.getDadosApi(`http://localhost:3000/contratos?${this.parametrosDeRelacionamento}`)
+    const queryParams = new URLSearchParams(this.$route.quey).toString()
+    const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`
+    this.getDadosApi(url)
   },
 
   beforeRouteUpdate(to, from, next) {
+    
     // console.log(to.query) // objeto => URLSearchParams
-
     const queryParams = new URLSearchParams(to.query).toString();
     console.log(to.query)
     console.log(queryParams)
-
     const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`
     console.log(url);
-
     this.getDadosApi(url)
-
     next()
   }
 
