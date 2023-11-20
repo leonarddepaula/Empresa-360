@@ -37,9 +37,11 @@ import ApiMixin from '@/mixins/ApiMixin'
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Lead',
+    props: ['id', 'outroParametro'],
     mixins: [ApiMixin],
     created() {
-        this.getDadosApi(`http://localhost:3000/leads/${this.$route.params.id}`)
+        // console.log(this.$props);
+        this.getDadosApi(`http://localhost:3000/leads/${this.id}`)
     }
 }
 </script>

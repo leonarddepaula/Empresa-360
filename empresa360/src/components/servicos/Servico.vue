@@ -13,15 +13,18 @@ import ApiMixin from '@/mixins/ApiMixin'
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Servico',
+    props: ['id'],
     mixins: [ApiMixin],
     created() {
-        this.getDadosApi(`http://localhost:3000/servicos/${this.$route.params.id}`)
+        // console.log('Servico: ',this.$route.params.id)
+        // console.log('Via Props: ',this.$props);
+        this.getDadosApi(`http://localhost:3000/servicos/${this.id}`)
     },
-    watch: {
-        $route(to){ // to para novo valor , from para valor antigo
+    beforeRouteUpdate(to, from, next) {
+    
             
             if(to.params.id != undefined) this.getDadosApi(`http://localhost:3000/servicos/${to.params.id}`)
-        }
+        next()
     }
 }
 </script>

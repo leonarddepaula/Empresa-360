@@ -1,14 +1,18 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
+  <div>
     <h5>Component Opções</h5>
-  </template>
+    <p>Poderíamaos recuperar as opções do serviço id {{ id }} </p>
+  </div>
+</template>
   
-  <script>
-  export default {
-  
+<script>
+export default {
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: 'Opcoes',
+  props: ['id'],
+  created() {
+    // console.log('indicadores: ', this.$route.params.id);
   }
-  </script>
-  
-  <style>
-  
-  </style>
+}
+</script>

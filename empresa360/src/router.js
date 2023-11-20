@@ -32,7 +32,33 @@ const routes = [
         component: Vendas,
         children: [
           { path: "leads", component: Leads, name: "leads" }, //localhost:8080/home/vendas/leads
-          { path: "leads/:id", component: Lead, name: "lead", alias: [ '/l/:id', '/pessoa/:id', '/:id'] }, //localhost:8080/home/vendas/leads/id
+          { 
+            path: "leads/:id/:outroParametro", 
+            props: true,
+          /*  props: {
+              id: 4,
+              outroParametro: 'pt-br'
+            },
+          */
+        /* props: route => {
+
+          console.log('Rota ativa: ',route);
+
+          let teste =  route.query.idioma ? route.query.idioma :  route.params.outroParametro
+
+            return {
+              id: 3,
+              outroParametro: teste
+             }
+         },  */
+            component: Lead, 
+            name: "lead", 
+            alias: [ 
+              '/l/:id/:outroParametro',
+              '/pessoa/:id/:outroParametro',
+              '/:id/:outroParametro'
+            ] 
+          }, //localhost:8080/home/vendas/leads/id
           { path: "contratos", component: Contratos, name: "contratos" }, //localhost:8080/home/vendas/contratos
           { path: "", component: VendasPadrao, name: 'vendas' }, //localhost:8080/home/vendas/
         ],
@@ -44,6 +70,11 @@ const routes = [
         children: [
           {
             path: ":id",
+            props: {
+              default: true,
+              indicadores: true,
+              opcoes: true
+            },
             alias: "/s/:id",
             name: "servico",
             components: {
