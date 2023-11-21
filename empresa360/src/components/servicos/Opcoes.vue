@@ -13,6 +13,9 @@ export default {
   props: ['id'],
   created() {
     // console.log('indicadores: ', this.$route.params.id);
-  }
+  },
+  beforeRouteUpdate(){
+    console.log('Guarda de componente beforeRouteUpdate')
+  },
 }
 </script>

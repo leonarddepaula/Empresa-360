@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 // createWebHashHistory
-// --- Início rotas
+//--- Início rotas
+/*
 import Home from "./views/Home.vue";
 import Login from "./views/Login.vue";
 import Site from "./views/Site.vue";
@@ -16,6 +17,42 @@ import Dashboard from "./components/dashboard/Dashboard.vue";
 import VendasPadrao from "./components/vendas/VendasPadrao.vue";
 import DashboardRodape from "./components/dashboard/DashboardRodape.vue";
 import PaginaNaoEncontrada from "./views/PaginaNaoEncontrada.vue";
+*/
+
+// lazy loading
+const Home = () => import("./views/Home.vue");
+const Login = () => import("./views/Login.vue");
+const Site = () => import("./views/Site.vue");
+const Vendas = () =>
+  import(/* webpackChunkName: "vendas" */ "./components/vendas/Vendas.vue");
+const Leads = () =>
+  import(/* webpackChunkName: "vendas" */ "./components/vendas/Leads.vue");
+const Lead = () =>
+  import(/* webpackChunkName: "vendas" */ "./components/vendas/Lead.vue");
+const Contratos = () =>
+  import(/* webpackChunkName: "vendas" */ "./components/vendas/Contratos.vue");
+const Servicos = () =>
+  import(
+    /* webpackChunkName: "servicos" */ "./components/servicos/Servicos.vue"
+  );
+const Servico = () =>
+  import(
+    /* webpackChunkName: "servicos" */ "./components/servicos/Servico.vue"
+  );
+const Opcoes = () =>
+  import(/* webpackChunkName: "servicos" */ "./components/servicos/Opcoes.vue");
+const Indicadores = () =>
+  import(
+    /* webpackChunkName: "servicos" */ "./components/servicos/Indicadores.vue"
+  );
+const Dashboard = () => import("./components/dashboard/Dashboard.vue");
+const VendasPadrao = () =>
+  import(
+    /* webpackChunkName: "vendas" */ "./components/vendas/VendasPadrao.vue"
+  );
+const DashboardRodape = () =>
+  import("./components/dashboard/DashboardRodape.vue");
+const PaginaNaoEncontrada = () => import("./views/PaginaNaoEncontrada.vue");
 
 const routes = [
   {
@@ -33,13 +70,14 @@ const routes = [
         path: "vendas",
         component: Vendas,
         children: [
-          { path: "leads",
-            component: Leads, 
+          {
+            path: "leads",
+            component: Leads,
             name: "leads",
             beforeEnter() {
               // ...
-              console.log('guarda de rota beforeEnter');
-            } 
+              console.log("guarda de rota beforeEnter");
+            },
           }, //localhost:8080/home/vendas/leads
           {
             path: "leads/:id/:outroParametro",
@@ -125,23 +163,41 @@ const routes = [
 ];
 const router = createRouter({
   history: createWebHistory(),
+  scrollBehavior(to, from, savedPosition) {
+    // return {
+    //   let: 0,
+    //   top: 150,
+    // };
+    console.log(savedPosition);
+    if (savedPosition) {
+      return savedPosition;
+    }
+
+    if (to.hash) {
+      return { el: to.hash }; // to.hash deve corresponder a um id de elemento HTML
+    }
+    return { left: 0, top: 0 };
+  },
   routes: routes,
 });
-router.beforeEach((to) => {
-  console.log('beforeEach');
-  if (to.meta.requerAutorizacao) {
+router.beforeEach(() => {
+  // console.log("beforeEach");
+  /* if (to.meta.requerAutorizacao) {
     console.log("Validar o acesso");
   } else {
     console.log("Apenas seguir a navegação");
-  }
+  } */
 });
 
+router.afterEach(() => {
+  // console.log(
+  //   "afterEach - guarda de rota executada após a conclusão da navegação"
+  // );
+  // console.log("Origem: ", from);
+  // console.log("Destino: ", to);
+});
 
-router.afterEach((to, from ) => {
-  console.log('afterEach - guarda de rota executada após a conclusão da navegação')
-  console.log('Origem: ', from );
-  console.log('Destino: ', to );
-})
-
-
+router.beforeResolve(() => {
+  // console.log("Guarda beforeResolve");
+});
 export default router;
