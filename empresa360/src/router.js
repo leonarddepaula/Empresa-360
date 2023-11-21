@@ -15,15 +15,17 @@ import Indicadores from "./components/servicos/Indicadores.vue";
 import Dashboard from "./components/dashboard/Dashboard.vue";
 import VendasPadrao from "./components/vendas/VendasPadrao.vue";
 import DashboardRodape from "./components/dashboard/DashboardRodape.vue";
-import PaginaNaoEncontrada from "./views/PaginaNaoEncontrada.vue"
+import PaginaNaoEncontrada from "./views/PaginaNaoEncontrada.vue";
 
 const routes = [
   {
     path: "/",
     component: Site,
+    meta: { requerAutorizacao: false },
   },
   {
     path: "/home", //localhost:8080/home
+    meta: { requerAutorizacao: true },
     alias: "/app",
     component: Home,
     children: [
@@ -31,16 +33,23 @@ const routes = [
         path: "vendas",
         component: Vendas,
         children: [
-          { path: "leads", component: Leads, name: "leads" }, //localhost:8080/home/vendas/leads
-          { 
-            path: "leads/:id/:outroParametro", 
+          { path: "leads",
+            component: Leads, 
+            name: "leads",
+            beforeEnter() {
+              // ...
+              console.log('guarda de rota beforeEnter');
+            } 
+          }, //localhost:8080/home/vendas/leads
+          {
+            path: "leads/:id/:outroParametro",
             props: true,
-          /*  props: {
+            /*  props: {
               id: 4,
               outroParametro: 'pt-br'
             },
           */
-        /* props: route => {
+            /* props: route => {
 
           console.log('Rota ativa: ',route);
 
@@ -51,16 +60,16 @@ const routes = [
               outroParametro: teste
              }
          },  */
-            component: Lead, 
-            name: "lead", 
-            alias: [ 
-              '/l/:id/:outroParametro',
-              '/pessoa/:id/:outroParametro',
-              '/:id/:outroParametro'
-            ] 
+            component: Lead,
+            name: "lead",
+            alias: [
+              "/l/:id/:outroParametro",
+              "/pessoa/:id/:outroParametro",
+              "/:id/:outroParametro",
+            ],
           }, //localhost:8080/home/vendas/leads/id
           { path: "contratos", component: Contratos, name: "contratos" }, //localhost:8080/home/vendas/contratos
-          { path: "", component: VendasPadrao, name: 'vendas' }, //localhost:8080/home/vendas/
+          { path: "", component: VendasPadrao, name: "vendas" }, //localhost:8080/home/vendas/
         ],
       }, //localhost:8080/home/vendas
       {
@@ -73,7 +82,7 @@ const routes = [
             props: {
               default: true,
               indicadores: true,
-              opcoes: true
+              opcoes: true,
             },
             alias: "/s/:id",
             name: "servico",
@@ -94,26 +103,45 @@ const routes = [
   {
     path: "/login",
     component: Login,
+    meta: { requerAutorizacao: false, campo2: "teste", campo3: 50 },
   },
-  { path: '/redirecionamento-1', redirect:'/home/servicos' },
-  { path: '/redirecionamento-2', redirect:{ name: 'leads'} },
-  { path: '/redirecionamento-3', redirect: '/home/vendas' },
-  { path: '/redirecionamento-4', redirect: { name: 'vendas' } },
-  { path: '/redirecionamento-5', redirect: to =>{
-    //podemos programar algo antes do rerirecionamento ser efetivado 
-    console.log(to);
+  { path: "/redirecionamento-1", redirect: "/home/servicos" },
+  { path: "/redirecionamento-2", redirect: { name: "leads" } },
+  { path: "/redirecionamento-3", redirect: "/home/vendas" },
+  { path: "/redirecionamento-4", redirect: { name: "vendas" } },
+  {
+    path: "/redirecionamento-5",
+    redirect: (to) => {
+      //podemos programar algo antes do rerirecionamento ser efetivado
+      console.log(to);
 
-    //return '/home/vendas'
-    return { name: 'vendas' }
-  } },
+      //return '/home/vendas'
+      return { name: "vendas" };
+    },
+  },
 
   // { path: '/:catchAll(.*)*', redirect: '/' } //vue2 = *
-  { path: '/:catchAll(.*)*', component: PaginaNaoEncontrada } 
+  { path: "/:catchAll(.*)*", component: PaginaNaoEncontrada },
 ];
 const router = createRouter({
   history: createWebHistory(),
   routes: routes,
 });
-// --- Fim rotas
+router.beforeEach((to) => {
+  console.log('beforeEach');
+  if (to.meta.requerAutorizacao) {
+    console.log("Validar o acesso");
+  } else {
+    console.log("Apenas seguir a navegação");
+  }
+});
+
+
+router.afterEach((to, from ) => {
+  console.log('afterEach - guarda de rota executada após a conclusão da navegação')
+  console.log('Origem: ', from );
+  console.log('Destino: ', to );
+})
+
 
 export default router;

@@ -40,6 +40,12 @@ export default {
 
   created() {
     this.getDadosApi('http://localhost:3000/leads')
+  },
+  beforeRouteEnter() {
+    console.log('Guarda de componente beforeRouteEnter');
+  },
+  beforeRouteLeave() {
+    console.log('Garda de componente beforeRouteLeave');
   }
 
 }

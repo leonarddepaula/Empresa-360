@@ -3,7 +3,7 @@
     <div>
         <h3>Detalhes do Lead</h3>
         <h5>{{ dados.id }} - {{ dados.nome }} </h5>
-       
+
         <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">ID</label>
             <div class="col-sm-10">
@@ -21,7 +21,7 @@
         <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">Telefone</label>
             <div class="col-sm-10">
-                <input type="text"  class="form-control" :value="dados.telefone">
+                <input type="text" class="form-control" :value="dados.telefone">
             </div>
         </div>
 
@@ -42,6 +42,17 @@ export default {
     created() {
         // console.log(this.$props);
         this.getDadosApi(`http://localhost:3000/leads/${this.id}`)
+    },
+
+    beforeRouteLeave() {
+        const confirmar = window.confirm('Deseja Sair deste formulário')
+
+        if (confirmar) {
+            return true
+        } else {
+            return false
+        }
+
     }
 }
 </script>
